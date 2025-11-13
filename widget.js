@@ -18,7 +18,7 @@
 
   // Add video or gif
   const media = document.createElement('video');
-  media.src = 'https://your-username.github.io/kirtilals-widget/decide-with-friends.mp4'; // replace after upload
+  media.src = 'https://android717.github.io/kirtilal/video.mp4'; // replace after upload
   media.autoplay = true;
   media.loop = true;
   media.muted = true;

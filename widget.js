@@ -25,7 +25,7 @@
   media.playsInline = true;
   media.style.width = '100%';
   media.style.height = '100%';
-  media.style.objectFit = 'cover';
+  media.style.objectFit = 'fill';
 
   widget.appendChild(media);
 

@@ -1,5 +1,6 @@
 <script>
-  (function() {
+(function() {
+  function initWidget() {
     // Prevent multiple inserts
     if (document.getElementById("kirtilals-widget")) return;
 
@@ -40,20 +41,20 @@
 
     // SVG Icons
     const mutedIcon = `
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-    <line x1="23" y1="9" x2="17" y2="15"></line>
-    <line x1="17" y1="9" x2="23" y2="15"></line>
-  </svg>
-`;
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+    `;
 
     const unmutedIcon = `
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-  </svg>
-`;
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+    `;
 
     // Mute/Unmute button
     const muteBtn = document.createElement('button');
@@ -72,7 +73,7 @@
 
     muteBtn.onmouseover = () => muteBtn.style.background = 'rgba(0,0,0,0.8)';
     muteBtn.onmouseout = () => muteBtn.style.background = 'rgba(0,0,0,0.6)';
-
+    
     muteBtn.onclick = (e) => {
       e.stopPropagation();
       media.muted = !media.muted;
@@ -98,7 +99,7 @@
 
     closeBtn.onmouseover = () => closeBtn.style.background = 'rgba(255,0,0,0.8)';
     closeBtn.onmouseout = () => closeBtn.style.background = 'rgba(0,0,0,0.6)';
-
+    
     closeBtn.onclick = (e) => {
       e.stopPropagation();
       widget.remove();
@@ -119,19 +120,19 @@
     widget.addEventListener('mousedown', (e) => {
       // Don't start drag if clicking on buttons
       if (e.target === muteBtn || e.target === closeBtn || e.target.closest('button')) return;
-
+      
       isDragging = true;
       hasMoved = false;
-
+      
       // Get current position
       const rect = widget.getBoundingClientRect();
       widgetStartX = rect.left;
       widgetStartY = rect.top;
-
+      
       // Store mouse starting position
       dragStartX = e.clientX;
       dragStartY = e.clientY;
-
+      
       // Switch to top/left positioning
       widget.style.left = widgetStartX + 'px';
       widget.style.top = widgetStartY + 'px';
@@ -141,20 +142,20 @@
 
     document.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
-
+      
       e.preventDefault();
-
+      
       // Calculate how far the mouse has moved
       const deltaX = e.clientX - dragStartX;
       const deltaY = e.clientY - dragStartY;
-
+      
       // Update position
       const newX = widgetStartX + deltaX;
       const newY = widgetStartY + deltaY;
-
+      
       widget.style.left = newX + 'px';
       widget.style.top = newY + 'px';
-
+      
       // Track if widget actually moved
       if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
         hasMoved = true;
@@ -173,5 +174,14 @@
     };
 
     document.body.appendChild(widget);
-  })();
+  }
+
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWidget);
+  } else {
+    // DOM is already ready
+    initWidget();
+  }
+})();
 </script>

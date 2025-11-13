@@ -8,7 +8,7 @@
   widget.style.bottom = '20px';
   widget.style.left = '20px';
   widget.style.zIndex = '9999';
-  widget.style.width = '180px';
+  widget.style.width = '320px';
   widget.style.height = '180px';
   widget.style.borderRadius = '12px';
   widget.style.overflow = 'hidden';

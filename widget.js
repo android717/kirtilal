@@ -18,7 +18,7 @@
 
     // Add video
     const media = document.createElement('video');
-    media.src = 'https://android717.github.io/kirtilal/video.mp4';
+    media.src = 'https://android717.github.io/kirtilal/kirtilal.mp4';
     media.autoplay = true;
     media.loop = true;
     media.muted = true;
